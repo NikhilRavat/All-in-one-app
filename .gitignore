@@ -1,3 +1,5 @@
 
 /.vs
 /Bank.Api/Bank.Api/obj
+/Bank.Api/.vs/Bank.Api
+/Bank.Api/Bank.Api/bin/Debug/net8.0

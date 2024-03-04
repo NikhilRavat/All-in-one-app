@@ -12,8 +12,7 @@ namespace Bank.Api.Data
         [MaxLength(100)]
         public string Email { get; set; }
         [MaxLength(100)]
-        public string Website { get; set; }
-        [MaxLength(100)]
+        public string Website { get; set; }        
         public string BankLogoUrl { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace Bank.Api.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        //username = nik_ravat
+        //password = Test@2024
         private readonly IAccountRepository _accountRepository;
 
         public AccountController(IAccountRepository accountRepository)
@@ -16,7 +18,7 @@ namespace Bank.Api.Controllers
             _accountRepository = accountRepository;
         }
 
-        [HttpPost]
+        [HttpPost("signUp")]
         public async Task<IActionResult> SignUp(SignUpModel model)
         {
             var result = await _accountRepository.SignUp(model);
@@ -33,9 +35,16 @@ namespace Bank.Api.Controllers
             var token = await _accountRepository.SignIn(username, password);
             if (string.IsNullOrEmpty(token))
             {
-                return Unauthorized("Incorrect Username or Password");
+                return Unauthorized(new
+                {
+                    isSuccess = false,
+                    message = "Incorrect Username or Password"
+                });
             }
-            return Ok(token);
+            return Ok(new
+            {
+                token
+            });
         }
     }
 }

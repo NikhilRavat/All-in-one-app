@@ -1,0 +1,42 @@
+.header {
+    color: #000;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.header a {
+    text-decoration: none;
+    color: #000;
+}
+
+.header i {
+    border: 2px solid darkgrey;
+    border-radius: 5px;
+    padding: 2px 4px;
+    color: darkgrey;
+    cursor: pointer;
+}
+
+.header+hr {
+    margin: 0;
+}
+
+.navLinks {
+    padding: 0;
+}
+
+.navLinks li {
+    padding: 10px 10px;
+    list-style-type: none;
+    border-bottom: 2px solid #fff;
+    background-color: #f2f1f1;
+}
+
+.navLinks li a {
+    font-weight: 600;
+    text-decoration: none;
+}
