@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import HttpService from '../../Fetch/fetch';
+import BankCard from './BankCard';
 
 function BankList() {
     const banks = useSelector((state) => state.banksReducer);
-    const token = useSelector(state => state.userReducer.token);
+    const token = useSelector(state => state.userReducer.user.token);
     const dispatch = useDispatch();
 
     const Success = (banks) => {
@@ -25,10 +26,18 @@ function BankList() {
         HttpService.FetchData('https://localhost:44367/api/Banks', token, Success, Error)
     }, []);
     return (
-        <div>
-            <h1>Hello Banks</h1>
-            <p>{JSON.stringify(banks.data)}</p>
-            <p>{JSON.stringify(banks.error)}</p>
+        <div className='container-fluid'>
+            <div className="row mt-3">
+                <div className="col-md-12 text-end">
+                    <button className='btn btn-primary'>Add New Bank</button>
+                </div>
+            </div>
+            <hr />
+            <div className='row'>
+                {banks.data.length > 0 && banks.data.map(bank => {
+                    return <BankCard key={bank.bankId} bank={bank} />
+                })}
+            </div>
         </div>
     )
 }

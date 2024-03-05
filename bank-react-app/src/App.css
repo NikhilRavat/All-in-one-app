@@ -25,6 +25,7 @@
 .content {
   width: calc(100vw - 220px);
   overflow: auto;
+  padding: 20px;
 }
 
 .footer {
@@ -43,4 +44,12 @@
   height: 22px;
   vertical-align: text-top;
   margin-right: 5px;
+}
+
+.body-card {
+  border-radius: 5px;
+  border: 2px solid lightgrey;
+  box-shadow: 2px 2px 5px 5px lightgrey;
+  height: 100%;
+  padding: 0.75rem;
 }

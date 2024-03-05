@@ -4,6 +4,7 @@ using Bank.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bank.Api.Migrations
 {
     [DbContext(typeof(BanksDbContext))]
-    partial class BanksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305055446_addedbankforeignkey")]
+    partial class addedbankforeignkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,12 +139,15 @@ namespace Bank.Api.Migrations
                     b.Property<int>("BankId")
                         .HasColumnType("int");
 
+                    b.Property<int>("BanksId")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AccountId");
 
-                    b.HasIndex("BankId");
+                    b.HasIndex("BanksId");
 
                     b.ToTable("BankAccounts");
                 });
@@ -221,7 +227,7 @@ namespace Bank.Api.Migrations
                         {
                             Id = 1,
                             Column = "AccountType",
-                            Created = new DateTime(2024, 3, 5, 11, 25, 48, 348, DateTimeKind.Local).AddTicks(5743),
+                            Created = new DateTime(2024, 3, 5, 11, 24, 45, 883, DateTimeKind.Local).AddTicks(8747),
                             Table = "BankAccounts",
                             Text = "Savings",
                             Value = 1
@@ -230,7 +236,7 @@ namespace Bank.Api.Migrations
                         {
                             Id = 2,
                             Column = "AccountType",
-                            Created = new DateTime(2024, 3, 5, 11, 25, 48, 348, DateTimeKind.Local).AddTicks(5759),
+                            Created = new DateTime(2024, 3, 5, 11, 24, 45, 883, DateTimeKind.Local).AddTicks(8770),
                             Table = "BankAccounts",
                             Text = "Current",
                             Value = 2
@@ -239,7 +245,7 @@ namespace Bank.Api.Migrations
                         {
                             Id = 3,
                             Column = "AccountType",
-                            Created = new DateTime(2024, 3, 5, 11, 25, 48, 348, DateTimeKind.Local).AddTicks(5761),
+                            Created = new DateTime(2024, 3, 5, 11, 24, 45, 883, DateTimeKind.Local).AddTicks(8773),
                             Table = "BankAccounts",
                             Text = "Recurring",
                             Value = 3
@@ -383,7 +389,7 @@ namespace Bank.Api.Migrations
                 {
                     b.HasOne("Bank.Api.Data.Banks", "Banks")
                         .WithMany()
-                        .HasForeignKey("BankId")
+                        .HasForeignKey("BanksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

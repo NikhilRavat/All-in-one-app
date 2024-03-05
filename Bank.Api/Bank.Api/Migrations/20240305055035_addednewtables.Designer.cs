@@ -4,6 +4,7 @@ using Bank.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bank.Api.Migrations
 {
     [DbContext(typeof(BanksDbContext))]
-    partial class BanksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305055035_addednewtables")]
+    partial class addednewtables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,15 +136,10 @@ namespace Bank.Api.Migrations
                     b.Property<int>("AccountType")
                         .HasColumnType("int");
 
-                    b.Property<int>("BankId")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AccountId");
-
-                    b.HasIndex("BankId");
 
                     b.ToTable("BankAccounts");
                 });
@@ -206,7 +204,7 @@ namespace Bank.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Updated")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Value")
@@ -221,27 +219,30 @@ namespace Bank.Api.Migrations
                         {
                             Id = 1,
                             Column = "AccountType",
-                            Created = new DateTime(2024, 3, 5, 11, 25, 48, 348, DateTimeKind.Local).AddTicks(5743),
+                            Created = new DateTime(2024, 3, 5, 11, 20, 35, 148, DateTimeKind.Local).AddTicks(7053),
                             Table = "BankAccounts",
                             Text = "Savings",
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = 1
                         },
                         new
                         {
                             Id = 2,
                             Column = "AccountType",
-                            Created = new DateTime(2024, 3, 5, 11, 25, 48, 348, DateTimeKind.Local).AddTicks(5759),
+                            Created = new DateTime(2024, 3, 5, 11, 20, 35, 148, DateTimeKind.Local).AddTicks(7077),
                             Table = "BankAccounts",
                             Text = "Current",
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = 2
                         },
                         new
                         {
                             Id = 3,
                             Column = "AccountType",
-                            Created = new DateTime(2024, 3, 5, 11, 25, 48, 348, DateTimeKind.Local).AddTicks(5761),
+                            Created = new DateTime(2024, 3, 5, 11, 20, 35, 148, DateTimeKind.Local).AddTicks(7080),
                             Table = "BankAccounts",
                             Text = "Recurring",
+                            Updated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = 3
                         });
                 });
@@ -377,17 +378,6 @@ namespace Bank.Api.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Bank.Api.Data.BankAccount", b =>
-                {
-                    b.HasOne("Bank.Api.Data.Banks", "Banks")
-                        .WithMany()
-                        .HasForeignKey("BankId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Banks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

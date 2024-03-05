@@ -40,3 +40,8 @@
     font-weight: 600;
     text-decoration: none;
 }
+
+.navLinks li a i {
+    margin-right: 10px;
+    font-size: 20px;
+}

@@ -1,6 +1,7 @@
 ﻿using Bank.Api.Models;
 using Bank.Api.Repository;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Api.Controllers
@@ -24,27 +25,28 @@ namespace Bank.Api.Controllers
             var result = await _accountRepository.SignUp(model);
             if (!result.Succeeded)
             {
-                return BadRequest("Something Went Wrong");
+                return BadRequest(new ApiBadResponse("Something Went Wrong"));
             }
-            return Ok(result);
+            return Ok(new ApiOkResponse(result));
         }
 
         [HttpPost("signIn/{username}/{password}")]
         public async Task<IActionResult> SignIn(string username,string password)
         {
-            var token = await _accountRepository.SignIn(username, password);
-            if (string.IsNullOrEmpty(token))
+            var user = await _accountRepository.SignIn(username, password);
+            if (string.IsNullOrEmpty(user.Token))
             {
-                return Unauthorized(new
-                {
-                    isSuccess = false,
-                    message = "Incorrect Username or Password"
-                });
+                return Unauthorized(new ApiBadResponse("Incorrect Username or Password"));
             }
-            return Ok(new
-            {
-                token
-            });
+            return Ok(new ApiOkResponse(user));
         }
+
+        [HttpPost("addRole/{roleName}")]
+        public async Task<IActionResult> AddRole(string roleName)
+        {
+            var role = await _accountRepository.AddRole(roleName);
+            return Ok(new ApiOkResponse(role));
+        }
+
     }
 }

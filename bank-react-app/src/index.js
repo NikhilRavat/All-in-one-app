@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import store from './Store/Store';
 import Login from './components/User/Login';
 import SignUp from './components/User/SignUp';
+import OpenAccount from './components/Account.js/OpenAccount';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,10 @@ const router = createBrowserRouter([
         path: '/banks',
         element: <BankList />
       },
-
+      {
+        path: '/open-account',
+        element: <OpenAccount />
+      }
 
     ]
   },

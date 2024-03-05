@@ -1,12 +1,16 @@
 const initialState = {
-    token: ''
+    user: {}
 }
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_TOKEN': return {
             ...state,
-            token: action.payload
+            user: action.payload
+        }
+        case 'LOGOUT': return {
+            ...state,
+            user: {}
         }
         default: return state;
     }

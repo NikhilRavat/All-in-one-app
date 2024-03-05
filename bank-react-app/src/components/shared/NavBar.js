@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Profile from './Profile';
 
 function NavBar() {
-    const token = useSelector((state) => state.userReducer.token);
+    const token = useSelector((state) => state.userReducer.user.token);
     return (
         <nav className="navbar navbar-expand-lg bg-primary">
             <div className="container-fluid">
@@ -19,7 +19,7 @@ function NavBar() {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                     </ul>
-                    <span className="navbar-text py-0">
+                    <span className="navbar-text py-0 d-flex align-items-center">
                         <Profile />
                     </span>
                 </div>

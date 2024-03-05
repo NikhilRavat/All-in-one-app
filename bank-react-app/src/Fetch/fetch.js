@@ -13,7 +13,7 @@ const FetchData = (url, token, succes, error) => {
         return response.json();
     }).then(data => {
         console.log(data);
-        succes(data);
+        succes(data.data);
     }).catch(err => {
         console.log(err);
     });
@@ -40,7 +40,7 @@ const PostData = (url, token, payload, PostSuccess, error) => {
             return res.json();
         })
         .then(data => {
-            PostSuccess(data.token);
+            PostSuccess(data.data);
         })
         .catch(err => {
             console.log(err);

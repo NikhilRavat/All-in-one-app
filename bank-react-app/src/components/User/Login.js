@@ -9,9 +9,9 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const UserFormSuccess = (token) => {
-        dispatch({ type: "SET_TOKEN", payload: token })
-        if (token) {
+    const UserFormSuccess = (user) => {
+        dispatch({ type: "SET_TOKEN", payload: user })
+        if (user.token) {
             navigate('/home');
         }
     }

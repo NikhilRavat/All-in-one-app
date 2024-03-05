@@ -20,8 +20,9 @@ function App() {
           <SideBar toggleSideBar={toggleSideBar} sideBarOpen={sideBarOpen} />
         </div>
         <div className="content" style={{ width: sideBarOpen ? "calc(100vw - 220px)" : "calc(100vw - 50px)" }}>
-          {/* <Counter /> */}
-          <Outlet />
+          <div className="body-card">
+            <Outlet />
+          </div>
         </div>
       </div>
       <div className="footer">

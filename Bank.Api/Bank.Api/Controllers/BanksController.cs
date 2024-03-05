@@ -1,7 +1,7 @@
 ﻿using Bank.Api.Data;
+using Bank.Api.Models;
 using Bank.Api.Repository;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Api.Controllers
@@ -20,7 +20,7 @@ namespace Bank.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBanks()
         {
-            return Ok(await _banksRepository.GetBanks());
+            return Ok(new ApiOkResponse(await _banksRepository.GetBanks()));
         }
     }
 }
