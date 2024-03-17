@@ -14,7 +14,7 @@ function SideBar({ sideBarOpen, toggleSideBar }) {
             <hr />
             <ul className={styles.navLinks}>
                 <li>
-                    <Link to={'/banks'}><i className='bi bi-bank'></i>Banks</Link>
+                    <Link to={'/banks/list'}><i className='bi bi-bank'></i>Banks</Link>
                 </li>
                 <li>
                     <Link to={'/open-account'}><i className="bi bi-person"></i>Account</Link>

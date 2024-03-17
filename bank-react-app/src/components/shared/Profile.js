@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
     const dispath = useDispatch();
+    const navigate = useNavigate();
     const user = useSelector(state => state.userReducer.user);
     const LogOutHandler = () => {
         dispath({ type: 'LOGOUT' })
     }
+
+    useEffect(() => {
+        if (!user.token) {
+            navigate('/user/login')
+        }
+    }, [user, navigate]);
     return (!user.token ?
         <>
             <Link to={'/user/signup'} className='btn btn-warning me-2'>Sign Up</Link>

@@ -13,6 +13,7 @@ import store from './Store/Store';
 import Login from './components/User/Login';
 import SignUp from './components/User/SignUp';
 import OpenAccount from './components/Account.js/OpenAccount';
+import AddBank from './components/Banks/AddBank';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/banks',
-        element: <BankList />
+        //element: <BankList />,
+        children: [
+          {
+            path: 'list',
+            element: <BankList />
+          },
+          {
+            path: 'add',
+            element: <AddBank />
+          }
+        ]
       },
       {
         path: '/open-account',

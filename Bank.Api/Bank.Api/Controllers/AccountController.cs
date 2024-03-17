@@ -1,5 +1,6 @@
 ﻿using Bank.Api.Models;
 using Bank.Api.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,11 @@ namespace Bank.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AccountController : ControllerBase
     {
         //username = nik_ravat
-        //password = Test@2024
+        //password = Test@1234
         private readonly IAccountRepository _accountRepository;
 
         public AccountController(IAccountRepository accountRepository)

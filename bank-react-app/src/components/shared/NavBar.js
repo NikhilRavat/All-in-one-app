@@ -1,10 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+//import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Profile from './Profile';
 
 function NavBar() {
-    const token = useSelector((state) => state.userReducer.user.token);
+    //const token = useSelector((state) => state.userReducer.user.token);
     return (
         <nav className="navbar navbar-expand-lg bg-primary">
             <div className="container-fluid">
